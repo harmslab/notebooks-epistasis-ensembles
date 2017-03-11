@@ -1,3 +1,9 @@
+# Git ignore stuff unique to this package
+results/
+scripts/old
+scripts/logs/*
+scripts/database/*
+
 ## ignore for this repository only
 *.pickle
 
