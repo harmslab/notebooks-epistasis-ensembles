@@ -3,6 +3,7 @@ results/
 scripts/old
 scripts/logs/*
 scripts/database/*
+*.hdf5
 
 ## ignore for this repository only
 *.pickle
