@@ -114,10 +114,10 @@ def rsquared_between_paths(summary):
 if __name__ == "__main__":
     length = 12
     n_muts = 8
-    n_samples = 5
+    n_samples = 100
 
     # prepare file
-    f = h5py.File("test.hdf5", "w")
+    f = h5py.File("lattice-8site.hdf5", "w")
     sequences = f.create_dataset("sequences", (n_samples, 2), dtype="|S" + str(length))
     phi2 = f.create_dataset("phi-2", (n_samples, n_muts), dtype="float64")
     rsquared2 = f.create_dataset("rsquared-2", (n_samples, n_muts, n_muts), dtype="float64")
@@ -133,7 +133,6 @@ if __name__ == "__main__":
             wildtype = "".join(RandomSequence(length))
             cs = get_lowest_confs(wildtype, 3, database="database")
             wt = LatticeThermodynamics(wildtype, conf_list=cs[0:2], temperature=1)
-            print(wildtype)
             try:
                 mut = adaptive_walk(wt, n_muts)
                 mutant = mut.sequence
@@ -200,6 +199,9 @@ if __name__ == "__main__":
             rsquared3[current,:,:] = rsquared_between_paths(summary3)
 
             current += 1
+            print(current)
+            with open("sequences.txt", "a") as f:
+                f.write(wildtype + ", " + mutant +"\n")
         else:
             n_failures += 1
-            print(n_failures)
+           
