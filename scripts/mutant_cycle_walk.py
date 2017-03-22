@@ -1,14 +1,11 @@
 __doc__ = """
 This script produces a walk away from a wildtype lattice sequence.
-
-Note: this script will create a `database` folder in the current directory and
-use it to store data for calculating lattice protein conformations.
 """
 import os
 import argparse
 import numpy as np
 import itertools as it
-import time
+import pickle
 
 from gpmap.utils import AMINO_ACIDS
 from gpmap.utils import find_differences
@@ -16,6 +13,8 @@ from gpmap.utils import find_differences
 from latticeproteins.fitness import Fitness
 from latticeproteins.conformations import Conformations
 from latticeproteins.sequences import RandomSequence
+
+
 
 def calculate_dGs(wildtype):
     """Create a dictionary of first-order and second-order ddGs"""
@@ -146,13 +145,14 @@ if __name__ == "__main__":
 
     # Handle command line argument
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("length", type=int, help="length of sequence.")
+    parser.add_argument("ancestor", type=str, help="Ancestral sequence to evolve from.")
     parser.add_argument("n_mutations", type=int, help="number of mutations.")
-    #parser.add_argument("ancestor", type=str, help="Ancestral sequence to evolve from.")
     args = parser.parse_args()
 
     # Ancestral sequence to evolve.
-    start = time.time()
-    seq = RandomSequence(args.length)
-    out = predicted_open_walks(seq, args.n_mutations, 10)
-    stop = time.time()
+    seq = list(args.ancestor)
+    out = predicted_open_walks(seq, args.n_mutations, 2)
+
+    # Write to file
+    with open("predicted-walks.pickle", "wb") as f:
+        pickle.dump(out, f)

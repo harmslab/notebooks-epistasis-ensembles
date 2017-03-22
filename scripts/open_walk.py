@@ -1,5 +1,9 @@
-import time
+__doc__ = """
+This script produces a walk away from a wildtype lattice sequence.
+"""
+import pickle
 import numpy as np
+import argparse
 
 from latticeproteins.fitness import Fitness
 from latticeproteins.interactions import miyazawa_jernigan
@@ -10,6 +14,7 @@ from gpmap.utils import hamming_distance
 from gpmap.utils import AMINO_ACIDS
 
 from latticegpm.gpm import LatticeGenotypePhenotypeMap
+
 
 def kmax2d(arr, k):
     """Return the indices of the n largest arguments in the 2d array.
@@ -77,8 +82,16 @@ def open_walks(seq, n_mutations, n_top_mutations, temp=1.0, target=None):
 
 if __name__ == "__main__":
 
-    start = time.time()
-    seq = "".join(RandomSequence(12))
-    out = open_walks(seq, 5, 10)
-    stop = time.time()
-    print(stop - start)
+    # Handle command line argument
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("ancestor", type=str, help="Ancestral sequence to evolve from.")
+    parser.add_argument("n_mutations", type=int, help="number of mutations.")
+    args = parser.parse_args()
+
+    # Ancestral sequence to evolve.
+    seq = list(args.ancestor)
+    out = open_walks(seq, args.n_mutations, 2)
+
+    # Write to file
+    with open("actual-walks.pickle", "wb") as f:
+        pickle.dump(out, f)
