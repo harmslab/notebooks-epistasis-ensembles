@@ -51,7 +51,7 @@ def open_walks(seq, n_mutations, n_top_mutations, temp=1.0, target=None):
     for m in range(n_mutations):
         updated_paths = []
         # Iterate through paths
-        for i, p in enumerate(paths):
+        for l, p in enumerate(paths):
             # construct new trajectories
             new_paths = p * n_top_mutations
             mutant = list(p[-1])
@@ -62,12 +62,12 @@ def open_walks(seq, n_mutations, n_top_mutations, temp=1.0, target=None):
             for (i,j), AA in np.ndenumerate(AA_grid):
                 seq1 = mutant[:]
                 seq1[i] = AA_grid[i,j]
-                dG[i,j] = fitness.Fitness(seq1)
+                dG[i,j] = fitness.Stability(seq1)
 
             # Find the top moves in the stability grid
             x, y = kmax2d(dG, n_top_mutations)
             # construct moves from top moves
-            new_paths = [p[:] for j in range(n_top_mutations)]
+            new_paths = [p[:] for q in range(n_top_mutations)]
 
             for k in range(n_top_mutations):
                 m = mutant[:]
@@ -90,8 +90,8 @@ if __name__ == "__main__":
 
     # Ancestral sequence to evolve.
     seq = list(args.ancestor)
-    out = open_walks(seq, args.n_mutations, 2)
+    out = open_walks(seq, args.n_mutations, 10)
 
     # Write to file
-    with open("actual-walks.pickle", "wb") as f:
+    with open("results/actual-walks.pickle", "wb") as f:
         pickle.dump(out, f)
