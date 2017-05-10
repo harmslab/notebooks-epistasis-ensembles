@@ -87,7 +87,7 @@ def ring_position(G, root):
             pos[node] = radial(i, j*angle)
     return pos
 
-def build_graphs(edges1, edges2):
+def build_graphs(edges1, edges2, source):
     """Construct two different networks from a set of edges.
     """
     # -----------------------------------------------
@@ -106,7 +106,7 @@ def build_graphs(edges1, edges2):
         i,j = key[0], key[1]
         G2.add_edge(i,j, weight=weight["weight"])
 
-    seq = get_source_node(G0)
+    seq = source
     # -----------------------------------------------
     # Calculate the flux at each node and edge
     # -----------------------------------------------
@@ -194,7 +194,7 @@ def build_graphs(edges1, edges2):
         
     return G0, G2, Gdiff
 
-def plot_networks(G1, G2, Gdiff):
+def plot_networks(G1, G2, Gdiff, source):
     """"""
     # options
     node_scale = 600
@@ -218,7 +218,7 @@ def plot_networks(G1, G2, Gdiff):
     # Initialize a gridspec
     gs = GridSpec(3, 1)
        
-    seq = get_source_node(G1)
+    seq = source
     # Calculate the positions for all nodes on rings
     pos = ring_position(Gdiff, seq)
 
