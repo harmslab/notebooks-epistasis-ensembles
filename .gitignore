@@ -1,4 +1,5 @@
 # Git ignore stuff unique to this package
+*.pdf
 scripts/old
 scripts/logs/*
 scripts/database/*
