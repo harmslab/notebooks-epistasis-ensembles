@@ -269,6 +269,7 @@ if __name__ == "__main__":
         directory = "{}-state".format(args.n_states)
         c = db[0:args.n_states]
         confs = ConformationList(length, c)
+        print(c)
 
     p = Process(target=trajectories_true, args=(seq, temp, target, confs, db, directory))
     p.start()

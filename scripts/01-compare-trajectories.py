@@ -201,7 +201,7 @@ if __name__ == "__main__":
     # Handle command line argument
     parser = argparse.ArgumentParser()
     parser.add_argument("n", type=int, nargs=2, help="datasets to compare")
-    parser.add_argument("dir", type=str, help="directory to run script")
+    parser.add_argument("n_states", type=int, help="number of states, 0 means full ensemble")
     args = parser.parse_args()
     start = args.n[0]
     stop = args.n[1]

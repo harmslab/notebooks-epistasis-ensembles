@@ -164,7 +164,27 @@ def overlap_for_subpaths(paths1, paths2):
     return overlaps
 
 
-def main(start, stop, dir):
+def main(start, stop, n_states):
+    # Directory to pull/push results
+    if n_states == 0:
+        dir = "full-state"
+    
+        # Read in actual dataset
+        with open("results-{}/binary-input.pickle".format(dir), "rb") as f:
+            data = pickle.load(f)
+            gpms = data["seq_pairs"]
+            targets = data["targets"]
+            dbs = data["dbs"][0:n_states]
+    
+    else:
+        dir = "{}-state".format(n_states)
+        # Read in actual dataset
+        with open("results-{}/binary-input.pickle".format(dir), "rb") as f:
+            data = pickle.load(f)
+            gpms = data["seq_pairs"]
+            targets = data["targets"]
+            dbs = None
+    
     size = stop - start
     magn_epistasis = np.ones((size, 6), dtype=float) * np.nan
     overlaps = dict([(i, []) for i in range(1, 8)])
@@ -175,9 +195,10 @@ def main(start, stop, dir):
         gpms = data["seq_pairs"]
         targets = data["targets"]
         dbs = data["dbs"]
-
+        
+        
     for key, pair in gpms.items():
-        epist, over = epistasis_between_pair(pair, targets[key])#, dbs[key][0:2])
+        epist, over = epistasis_between_pair(pair, targets[key], dbs[key][0:2])
         magn_epistasis[key, :len(epist)] = epist
 
         for order in over:
@@ -195,9 +216,9 @@ if __name__ == "__main__":
     # Handle command line argument
     parser = argparse.ArgumentParser()
     parser.add_argument("n", type=int, nargs=2, help="datasets to compare")
-    parser.add_argument("dir", type=str, help="directory to run script")
+    parser.add_argument("n_states", type=int, help="Number of states in ensemble, 0 means full.")
     args = parser.parse_args()
     start = args.n[0]
     stop = args.n[1]
 
-    main(start, stop, args.dir)
+    main(start, stop, args.n_states)
