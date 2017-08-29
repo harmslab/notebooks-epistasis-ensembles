@@ -1,0 +1,49 @@
+################################################################
+###### Example PBS (Portable Batch System) Script
+#################################################################
+#! /bin/bash -l
+#
+### Name the job
+#PBS -N lattice
+#
+### Set the number of nodes and cores to use for the job
+#PBS -l nodes=1:ppn=12
+#
+### Type of job to run
+#PBS -q generic
+#
+### Path to start this script from
+#PBS -d /home6/zsailer/ensembles-final/pop-1
+#
+### Path to output file
+#PBS -o /home6/zsailer/ensembles-final/pop-1/output.txt
+#
+#
+### Combine the output and error file
+#PBS -j oe
+#
+### Email me when the job is done
+#PBS -m abe
+#PBS -M zsailer@uoregon.edu
+#
+##################################################################
+###### Write program to run here
+##################################################################
+
+POPSIZE=1
+N_MOVES=7
+N_BRANCHES=3
+N_STATES=3
+
+nohup python main.py 96 IELWKWKFMFLV --db URRRDDLULDL UUURRDLDDRU UURDDDLLUUU --target URRRDDLULDL --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 97 CKVDEFICSTKR --db URRDLDLDRRU UUURDDDRUUU URRDLDRDLLU --target URRDLDLDRRU --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 98 AIFIDMCKHFMY --db URDRUUULDLU URDRUUULLDR UUURDDDRUUU --target URDRUUULDLU --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 99 MWKPKYFKFFFA --db URDDLLLURUL URULURRDDDL URRDLDRDLLU --target URDDLLLURUL --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 100 CHKAKNFFMNIQ --db UURRDLDRDLL UURRDLDRRUU UUURRDDDLUU --target UURRDLDRDLL --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 101 QMLFWMRMHKHV --db UURDDRUUULL URDRUULLURR UURRDLDRDLL --target UURDDRUUULL --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 102 FTQAKHYILDWH --db URDDLLUULDD URDDLLUUURR URDDLLLURUL --target URDDLLUULDD --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 103 EINMCCIICPCC --db UURRDLDRRUU UURRDLDRDLL UURDRURDDLL --target UURRDLDRRUU --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 104 CKHKCMDVQCFF --db URRDDDLLURU URDRUULLURR URRRDDLULDL --target URRDDDLLURU --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 105 FINCKIMQWFLH --db URDDLLLURUL URDDLDRRUUU URDRURDDLLL --target URDDLLLURUL --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 106 HIIKCKWMFCDM --db UUURRDLDDRU UUURRDLDRDL URULLDDDRRU --target UUURRDLDDRU --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &
+nohup python main.py 107 CCLNVDWFFCNM --db UUURRDLDDRU UUURRDLDRDL UUURRDDDLUU --target UUURRDLDDRU --popsize $POPSIZE --n_moves $N_MOVES --n_branches $N_BRANCHES --n_states $N_STATES &

@@ -1,0 +1,9 @@
+qsub runme1.pbs
+qsub runme2.pbs
+qsub runme3.pbs
+qsub runme4.pbs
+qsub runme5.pbs
+qsub runme6.pbs
+qsub runme7.pbs
+qsub runme8.pbs
+qsub runme9.pbs
