@@ -1,0 +1,7 @@
+name: ensembles
+dependencies:
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - pip

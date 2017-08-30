@@ -4,6 +4,7 @@ scripts/old
 scripts/logs/*
 scripts/database/*
 *.hdf5
+*.DS_Store
 
 ## ignore for this repository only
 *.pickle
