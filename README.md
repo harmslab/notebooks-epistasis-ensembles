@@ -1,17 +1,7 @@
-# Ensembles encrypt evolution
+# Molecular ensembles make evolution unpredictable
 
-Notebooks for paper on epistasis that arises from molecular ensembles.
+This repository contains all scripts, data, and Jupyter notebooks used for the paper:
 
-## Figures
+"Molecular ensembles make evolution unpredictable."
 
-1. HP model example
-
-1. Lattice genotype-phenotype map and ensemble
-
-1. Decaying epistasis
-
-1. Predicting trajectories with ensemble.
-
-
-## Python Dependencies
-
+**IMPORTANT:** we are currently working hard to get this repo compiled. We apologize for the lag after publication. Check back in a couple days!
